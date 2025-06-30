@@ -88,7 +88,7 @@ const SearchPage = () => {
           </div>
         )}
 
-        {/* Empty Search */}
+       
         {hasSearched && !isLoading && packages.length === 0 && !error && (
           <div className="text-center py-20">
             <Search className="w-12 h-12 text-gray-400 mx-auto mb-4" />

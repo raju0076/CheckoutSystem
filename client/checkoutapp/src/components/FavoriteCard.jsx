@@ -101,7 +101,6 @@ const FavoriteCard = ({ favorite, onRemove, index }) => {
           </button>
         </div>
 
-        {/* Reason Section (Editable) */}
         <div className={`mt-4 ${color.reasonBg} border ${color.border} rounded-md p-4`}>
           <div className="flex gap-2 items-start">
             <MessageSquare className={`w-4 h-4 ${color.reasonText} mt-0.5`} />
@@ -141,7 +140,7 @@ const FavoriteCard = ({ favorite, onRemove, index }) => {
                   <p className={`text-sm ${color.text} mt-0.5`}>{favorite.reason}</p>
                   <button
                     onClick={() => setIsEditing(true)}
-                    className="mt-2 text-base text-black-600 hover:bg-green-600 bg-red-600 px-1 py-0 rounded-md "
+                    className="mt-2 text-base text-black-600 hover:bg-green-600 bg-red-600 px-1 rounded-md "
                   >
                     Edit Reason
                   </button>
