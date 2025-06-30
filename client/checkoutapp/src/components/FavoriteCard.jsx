@@ -58,6 +58,9 @@ const colors = [
 
 const FavoriteCard = ({ favorite, onRemove, index }) => {
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedReason, setEditedReason] = useState(favorite.reason);
+
   const color = colors[index % colors.length];
 
   const formatDate = (dateStr) =>
@@ -98,12 +101,52 @@ const FavoriteCard = ({ favorite, onRemove, index }) => {
           </button>
         </div>
 
+        {/* Reason Section (Editable) */}
         <div className={`mt-4 ${color.reasonBg} border ${color.border} rounded-md p-4`}>
           <div className="flex gap-2 items-start">
             <MessageSquare className={`w-4 h-4 ${color.reasonText} mt-0.5`} />
-            <div>
+            <div className="flex-1">
               <p className={`text-sm font-medium ${color.reasonText}`}>Reason:</p>
-              <p className={`text-sm ${color.text} mt-0.5`}>{favorite.reason}</p>
+
+              {isEditing ? (
+                <>
+                  <textarea
+                    value={editedReason}
+                    onChange={(e) => setEditedReason(e.target.value)}
+                    className="w-full mt-1 p-2 text-sm border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                  />
+                  <div className="mt-2 flex gap-2">
+                    <button
+                      onClick={() => {
+                        favorite.reason = editedReason;
+                        setIsEditing(false);
+                      }}
+                      className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                    >
+                      Save
+                    </button>
+                    <button
+                      onClick={() => {
+                        setEditedReason(favorite.reason);
+                        setIsEditing(false);
+                      }}
+                      className="px-3 py-1 text-sm bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className={`text-sm ${color.text} mt-0.5`}>{favorite.reason}</p>
+                  <button
+                    onClick={() => setIsEditing(true)}
+                    className="mt-2 text-base text-black-600 hover:bg-green-600 bg-red-600 px-1 py-0 rounded-md "
+                  >
+                    Edit Reason
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>

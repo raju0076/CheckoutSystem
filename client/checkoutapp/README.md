@@ -32,4 +32,5 @@ SCREENSHORTS :--
 git clone https://github.com/raju0076/CheckoutSystem
 
 cd client/checkoutapp
+
 start: npm run dev
